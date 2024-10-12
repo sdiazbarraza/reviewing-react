@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
-import CountContext from './CountContext';
+import { CountContext } from './CountContext';
 
-function MyButton() {
-  const { count, handleClick } = useContext(CountContext);
+function MyButton({action}) {
+  const { state, dispatch } = useContext(CountContext);
 
   return (
-    <button onClick={handleClick}>Clicked {count} times</button>
+    <button onClick={() => dispatch({ type: action })}>
+      Clicked action {action} {state.count} times
+    </button>
   );
 }
 
 export default MyButton;
+

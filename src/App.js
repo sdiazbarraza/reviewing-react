@@ -2,26 +2,18 @@ import logo from './logo.svg';
 import './App.css';
 import Profile from './Profile'; // Importa el componente MyButton
 import MyButton from './MyButton';
-import { useState } from 'react';
-import CountContext from './CountContext';
+import {CountProvider} from './CountContext';
 
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-  }
-
   return (
-    <CountContext.Provider value={{ count, handleClick }}>
+    <CountProvider>
       <div className="App">
-          <Profile />
-          <MyButton />
-          <MyButton />
+        <Profile />
+        <MyButton action='increment'/>
+        <MyButton action='decrement' />
       </div>
-    </CountContext.Provider>
-
+    </CountProvider>
   );
 }
 
